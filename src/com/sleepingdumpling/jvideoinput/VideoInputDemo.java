@@ -29,6 +29,8 @@
  */
 package com.sleepingdumpling.jvideoinput;
 
+import imgproc.SkinExtractor;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -85,12 +87,20 @@ public class VideoInputDemo extends JPanel {
 			long lastReportTime = -1;
 			long imgCnt = 0;
 			
+			SkinExtractor se = new SkinExtractor();
+			
 			while (true) {
 				long start = System.nanoTime();
 				try {
 					VideoFrame vf = videoInput.getNextFrame(null);
 					if (vf != null) {
 						this.displayImage = getRenderingBufferedImage(vf);
+						
+						
+						// Extraindo só o que é cor da pele
+						se.extract(this.displayImage);
+						
+						
 						imgCnt++;
 						
 						long now = System.nanoTime();
