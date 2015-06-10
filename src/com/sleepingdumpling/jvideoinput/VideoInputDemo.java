@@ -29,6 +29,8 @@
  */
 package com.sleepingdumpling.jvideoinput;
 
+import imgproc.ConvertTo8bit;
+import imgproc.NiBlack;
 import imgproc.SkinExtractor;
 
 import java.awt.BorderLayout;
@@ -97,7 +99,15 @@ public class VideoInputDemo extends JPanel {
 						this.displayImage = getRenderingBufferedImage(vf);
 						
 						
-						// Extraindo só o que é cor da pele
+						// Put your customization here: this.displayImage is the camera image before it showed 
+						
+						//Convertendo pra GrayScale
+	//					displayImage = ConvertTo8bit.convert(displayImage);
+
+						//Binarizacao por NiBlack
+//						displayImage = NiBlack.binarize(displayImage);
+						
+						// Skin Extractor - Extraindo só o que é cor da pele
 						se.extract(this.displayImage);
 						
 						
